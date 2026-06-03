@@ -10,3 +10,6 @@
 
 # Temporary tooling is not part of the hosted site.
 node_modules/
+
+# Local Netlify folder
+.netlify
