@@ -1,0 +1,12 @@
+.DS_Store
+
+# Keep the original, heavy source assets local.
+/我的作品/
+/首页作品封面/
+/首页素材/
+/关于素材/
+/assets/
+/projects/
+
+# Temporary tooling is not part of the hosted site.
+node_modules/

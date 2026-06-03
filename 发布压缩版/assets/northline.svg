@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Northline</title>
+  <desc id="desc">Product dashboard artwork with panels, maps, and interface controls.</desc>
+  <rect width="1200" height="900" fill="#e8ece7"/>
+  <rect x="70" y="70" width="1060" height="760" rx="8" fill="#171717"/>
+  <rect x="110" y="120" width="980" height="120" fill="#f4f1e8"/>
+  <rect x="110" y="280" width="286" height="500" fill="#2558a7"/>
+  <rect x="432" y="280" width="300" height="226" fill="#2b6f64"/>
+  <rect x="770" y="280" width="320" height="226" fill="#e0b33f"/>
+  <rect x="432" y="544" width="658" height="236" fill="#f4f1e8"/>
+  <path d="M150 166h250v26H150zm720 0h170v26H870z" fill="#171717"/>
+  <path d="M474 614h540v20H474zm0 58h410v20H474zm0 58h480v20H474z" fill="#171717"/>
+  <path d="M172 702l72-142 72 82 48-118" stroke="#f4f1e8" stroke-width="18" fill="none"/>
+  <circle cx="244" cy="560" r="26" fill="#f4f1e8"/>
+</svg>

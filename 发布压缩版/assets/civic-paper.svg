@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Civic Paper</title>
+  <desc id="desc">Publication layout artwork with columns, image blocks, and strong newspaper grid.</desc>
+  <rect width="1200" height="900" fill="#ece8dc"/>
+  <rect x="104" y="66" width="992" height="768" fill="#fbf8ed" stroke="#171717" stroke-width="6"/>
+  <path d="M154 132h892v34H154zm0 72h520v26H154z" fill="#171717"/>
+  <rect x="154" y="282" width="310" height="250" fill="#2b6f64"/>
+  <rect x="500" y="282" width="246" height="250" fill="#b34d35"/>
+  <rect x="784" y="282" width="262" height="250" fill="#2558a7"/>
+  <path d="M154 600h232v18H154zm0 44h260v18H154zm0 44h198v18H154zm346-88h232v18H500zm0 44h260v18H500zm0 44h198v18H500zm346-88h170v18H846zm0 44h200v18H846zm0 44h140v18H846z" fill="#171717"/>
+  <rect x="154" y="758" width="892" height="18" fill="#e0b33f"/>
+</svg>

@@ -1,0 +1,3 @@
+[build]
+  publish = "发布压缩版"
+  command = ""

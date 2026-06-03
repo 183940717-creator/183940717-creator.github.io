@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Field System</title>
+  <desc id="desc">Layered geometric identity artwork with green, cobalt, clay, and cream blocks.</desc>
+  <rect width="1200" height="900" fill="#efe6d5"/>
+  <rect x="72" y="64" width="1056" height="772" fill="#1c1c1c"/>
+  <rect x="112" y="104" width="404" height="696" fill="#2b6f64"/>
+  <rect x="548" y="104" width="540" height="300" fill="#e0b33f"/>
+  <rect x="548" y="438" width="250" height="362" fill="#2558a7"/>
+  <rect x="832" y="438" width="256" height="362" fill="#b34d35"/>
+  <circle cx="314" cy="452" r="152" fill="#efe6d5"/>
+  <path d="M585 152h458v44H585zm0 86h368v44H585zm0 86h260v44H585z" fill="#1c1c1c"/>
+  <path d="M168 724h276v26H168zm0-58h182v26H168z" fill="#efe6d5"/>
+</svg>

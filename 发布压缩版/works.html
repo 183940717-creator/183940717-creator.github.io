@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hakuna all works: visual design, motion design, and interdisciplinary design projects."
+    />
+    <title>All Works | Hakuna</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Site navigation">
+      <a class="brand-mark" href="index.html#top" aria-label="Hakuna home">
+        <img src="首页素材/site-logo.svg" alt="" />
+        <span data-zh="首页" data-en="Home">首页</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="works.html" data-zh="全部作品" data-en="All Works">全部作品</a>
+        <a href="about.html" data-zh="简历" data-en="Resume">简历</a>
+        <a href="index.html#contact" data-zh="联系" data-en="Contact">联系</a>
+      </nav>
+      <button class="language-toggle" type="button" aria-label="Switch language">
+        <span data-lang-option="zh">中</span>
+        <span data-lang-option="en">EN</span>
+      </button>
+    </header>
+
+    <main class="works-page">
+      <a class="back-link" href="index.html#work" data-zh="返回首页精选作品" data-en="Back to featured works">返回首页精选作品</a>
+      <section class="works-overview" aria-labelledby="all-works-title">
+        <div class="section-toolbar">
+          <h1 id="all-works-title" data-zh="全部作品" data-en="All Works">全部作品</h1>
+          <a class="view-all-link" href="index.html#work" data-zh="精选作品" data-en="Featured Works">精选作品</a>
+        </div>
+
+        <div class="project-grid all-project-grid" id="all-project-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
