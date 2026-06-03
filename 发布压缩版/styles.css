@@ -1050,6 +1050,236 @@ main {
   }
 }
 
+@media (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .site-header {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .brand-mark {
+    min-width: 0;
+  }
+
+  .brand-mark img {
+    height: 24px;
+    max-width: 92px;
+  }
+
+  .nav-links {
+    gap: 10px 16px;
+    font-size: 13px;
+  }
+
+  .language-toggle {
+    min-height: 34px;
+  }
+
+  .language-toggle span {
+    min-width: 32px;
+    min-height: 26px;
+    padding: 0 7px;
+  }
+
+  .hero {
+    min-height: calc(100svh - 98px);
+    padding: 34px 16px 42px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    transform: translateY(-1.5vh);
+  }
+
+  .hero-title,
+  .hero-lede {
+    width: min(100%, 680px);
+  }
+
+  .hero-title img {
+    max-height: 128px;
+  }
+
+  .hero-lede {
+    margin-top: 18px;
+    font-size: clamp(13px, 3.2vw, 17px);
+    line-height: 1.24;
+  }
+
+  .hero-lede span {
+    display: inline;
+    white-space: normal;
+  }
+
+  .hero-lede span + span::before {
+    content: " ";
+  }
+
+  .hero-scroll-cue {
+    right: 16px;
+    bottom: 22px;
+    width: 110px;
+  }
+
+  .work-overview,
+  .project-index,
+  .about,
+  .tag-stream,
+  .contact,
+  .works-page,
+  .about-page,
+  .project-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section-toolbar {
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-toolbar h1,
+  .section-toolbar h2,
+  .tag-row {
+    font-size: clamp(34px, 10vw, 58px);
+  }
+
+  .view-all-link {
+    min-height: 34px;
+    padding: 8px 13px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .featured-carousel {
+    margin-right: 0;
+    padding: 18px 0 24px;
+    overflow: hidden;
+  }
+
+  .featured-grid {
+    gap: 14px;
+  }
+
+  .featured-grid .project-card {
+    flex-basis: min(82vw, 420px);
+  }
+
+  .project-card a {
+    gap: 10px;
+  }
+
+  .project-card h3 {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .project-meta {
+    margin-bottom: 8px;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .tag-stream {
+    padding-top: 34px;
+    padding-bottom: 56px;
+  }
+
+  .tag-row {
+    line-height: 1.02;
+  }
+
+  .contact {
+    min-height: auto;
+    padding-top: 58px;
+    padding-bottom: 70px;
+  }
+
+  .contact h2 {
+    font-size: clamp(34px, 11vw, 62px);
+    line-height: 0.98;
+  }
+
+  .contact-links a,
+  .contact-links span {
+    padding: 18px 0;
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .works-card a {
+    padding: 24px 0;
+  }
+
+  .works-card h2 {
+    font-size: clamp(30px, 9vw, 54px);
+  }
+
+  .works-card p {
+    font-size: 15px;
+  }
+
+  .about-image,
+  .resume-section {
+    width: 100%;
+  }
+
+  .resume-entry {
+    gap: 18px;
+    padding: 34px 0;
+  }
+
+  .resume-entry-heading h2 {
+    font-size: clamp(30px, 10vw, 56px);
+  }
+
+  .resume-entry-heading p,
+  .resume-entry-body p,
+  .resume-entry-body li {
+    font-size: clamp(15px, 4vw, 19px);
+  }
+
+  .project-hero {
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 34px;
+  }
+
+  .project-hero h1 {
+    max-width: none;
+    font-size: clamp(42px, 13vw, 76px);
+  }
+
+  .project-intro {
+    gap: 16px;
+  }
+
+  .project-intro p,
+  .project-body p {
+    font-size: clamp(17px, 4.4vw, 22px);
+  }
+
+  .project-media-row {
+    gap: 8px;
+  }
+
+  .project-media-number {
+    margin-bottom: 4px;
+  }
+
+  .next-project {
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+  }
+
+  .next-project strong {
+    font-size: clamp(32px, 11vw, 58px);
+  }
+}
+
 @media (max-width: 620px) {
   .site-header {
     grid-template-columns: auto 1fr;
@@ -1099,21 +1329,162 @@ main {
   }
 
   .hero-title {
-    width: 66.666vw;
+    width: min(100%, 520px);
   }
 
   .hero-lede {
-    width: 66.666vw;
-    font-size: clamp(6px, 1.52vw, 10px);
+    width: min(100%, 520px);
+    font-size: clamp(13px, 3.6vw, 16px);
+    line-height: 1.25;
   }
 
   .hero-lede span {
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .project-facts div {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .brand-mark {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .brand-mark img {
+    height: 21px;
+    max-width: 78px;
+  }
+
+  .nav-links {
+    gap: 8px 14px;
+    font-size: 12px;
+  }
+
+  .language-toggle span {
+    min-width: 30px;
+    padding: 0 6px;
+    font-size: 11px;
+  }
+
+  .hero {
+    min-height: calc(100svh - 104px);
+    padding: 28px 14px 40px;
+  }
+
+  .hero-title img {
+    max-height: 98px;
+  }
+
+  .hero-lede {
+    margin-top: 14px;
+    font-size: clamp(12px, 3.75vw, 15px);
+  }
+
+  .work-overview,
+  .project-index,
+  .about,
+  .tag-stream,
+  .contact,
+  .works-page,
+  .about-page,
+  .project-page {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .section-toolbar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .section-toolbar h1,
+  .section-toolbar h2,
+  .tag-row {
+    font-size: clamp(30px, 11vw, 46px);
+  }
+
+  .featured-grid .project-card {
+    flex-basis: min(84vw, 340px);
+  }
+
+  .project-card h3 {
+    font-size: clamp(16px, 5.4vw, 22px);
+  }
+
+  .tag-row b::before {
+    width: 0.28em;
+    height: 0.28em;
+  }
+
+  .works-card h2 {
+    font-size: clamp(28px, 10vw, 44px);
+  }
+
+  .works-card p {
+    font-size: 14px;
+    line-height: 1.42;
+  }
+
+  .contact h2 {
+    font-size: clamp(32px, 11.5vw, 48px);
+  }
+
+  .about-page,
+  .works-page,
+  .project-page {
+    padding-top: 26px;
+  }
+
+  .back-link {
+    margin-bottom: 28px;
+  }
+
+  .resume-entry-heading h2 {
+    font-size: clamp(28px, 11vw, 46px);
+  }
+
+  .resume-entry-body {
+    gap: 16px;
+  }
+
+  .project-hero h1 {
+    font-size: clamp(38px, 14vw, 60px);
+    line-height: 0.96;
+  }
+
+  .project-gallery {
+    margin-left: -14px;
+    width: calc(100% + 28px);
+  }
+
+  .project-media-row {
+    gap: 6px;
+  }
+
+  .project-media-number {
+    padding-left: 14px;
+  }
+
+  .project-media-items {
+    width: 100%;
+  }
+
+  .project-media-row.is-paired .project-media-items {
+    grid-template-columns: 1fr;
+  }
+
+  .next-project {
+    grid-template-columns: 1fr;
   }
 }
 
