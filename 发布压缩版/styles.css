@@ -1091,6 +1091,15 @@ main {
     padding: 34px 16px 42px;
   }
 
+  .hero::before {
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(247, 244, 234, 0.035) 0 1px, rgba(247, 244, 234, 0) 1px 8px),
+      linear-gradient(90deg, rgba(7, 7, 7, 0.62) 0%, rgba(7, 7, 7, 0.38) 48%, rgba(7, 7, 7, 0.58) 100%),
+      var(--hero-bg) top center / 100% auto no-repeat;
+    transform: translate3d(var(--hero-pan-x), var(--hero-pan-y), 0) scale(1);
+  }
+
   .hero-copy {
     width: 100%;
     transform: translateY(-1.5vh);
@@ -1159,15 +1168,24 @@ main {
   .featured-carousel {
     margin-right: 0;
     padding: 18px 0 24px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .featured-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
     gap: 14px;
+    animation: none;
   }
 
   .featured-grid .project-card {
-    flex-basis: min(82vw, 420px);
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .featured-grid .project-card[aria-hidden="true"] {
+    display: none;
   }
 
   .project-card a {
