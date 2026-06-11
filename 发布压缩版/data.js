@@ -23,23 +23,23 @@ const portfolioProjects = [
       body: "The project brings fashion, virtual identity, and digital interface language into one visual system. High-contrast imagery, interface-led layout, and motion assets give the brand a futuristic yet fashion-aware presence."
     },
     media: [
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-000-1.webp",
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-000-2.webp",
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-000-3.webp",
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-001.webp",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-000-1.gif",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-000-2.gif",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-000-3.gif",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-001.gif",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-002-1.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-002-2.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-003.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-004.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-005.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-006.jpg",
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-007.webp",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-007.gif",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-008.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-009.jpg",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-010-1.jpg",
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-010-2.webp",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-010-2.gif",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-011.jpg",
-      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-012.webp",
+      "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-012.gif",
       "我的作品/01_品牌:沸寂-虚拟时尚APP:/FJ-013.jpg"
     ]
   },
@@ -70,7 +70,7 @@ const portfolioProjects = [
       "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-001.jpg",
       "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-002.jpg",
       "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-003.jpg",
-      "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-004.webp",
+      "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-004.gif",
       "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-005.jpg",
       "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-006.jpg",
       "我的作品/02_品牌:TikTok- DEVELOPER DAY:/DD-007.jpg"
@@ -107,7 +107,7 @@ const portfolioProjects = [
       "我的作品/03_活动视觉:抖音年度报告:/Slice 5.jpg",
       "我的作品/03_活动视觉:抖音年度报告:/Slice 6.jpg",
       "我的作品/03_活动视觉:抖音年度报告:/Slice 7.jpg",
-      "我的作品/03_活动视觉:抖音年度报告:/Slice 8.webp",
+      "我的作品/03_活动视觉:抖音年度报告:/Slice 8.gif",
       "我的作品/03_活动视觉:抖音年度报告:/Slice 9.webp"
     ]
   },
@@ -177,8 +177,8 @@ const portfolioProjects = [
       "我的作品/05_活动视觉:抖音生活者说:/SH-003.jpg",
       "我的作品/05_活动视觉:抖音生活者说:/SH-004.jpg",
       "我的作品/05_活动视觉:抖音生活者说:/SH-005.jpg",
-      "我的作品/05_活动视觉:抖音生活者说:/SH-006-1.webp",
-      "我的作品/05_活动视觉:抖音生活者说:/SH-006-2.webp",
+      "我的作品/05_活动视觉:抖音生活者说:/SH-006-1.gif",
+      "我的作品/05_活动视觉:抖音生活者说:/SH-006-2.gif",
       "我的作品/05_活动视觉:抖音生活者说:/SH-007.jpg"
     ]
   },
@@ -270,13 +270,13 @@ const portfolioProjects = [
       body: "The project centers on IP character and communication rhythm, combining GIFs, video, and static pages to keep the promotion recognizable across platforms."
     },
     media: [
-      "我的作品/08_抖音:创意宣发/MX-001.webp",
+      "我的作品/08_抖音:创意宣发/MX-001.gif",
       "我的作品/08_抖音:创意宣发/MX-002.jpg",
-      "我的作品/08_抖音:创意宣发/MX-003.webp",
+      "我的作品/08_抖音:创意宣发/MX-003.gif",
       "我的作品/08_抖音:创意宣发/MX-004.jpg",
-      "我的作品/08_抖音:创意宣发/MX-005.webp",
+      "我的作品/08_抖音:创意宣发/MX-005.gif",
       "我的作品/08_抖音:创意宣发/MX-006.jpg",
-      "我的作品/08_抖音:创意宣发/MX-007.webp",
+      "我的作品/08_抖音:创意宣发/MX-007.gif",
       "我的作品/08_抖音:创意宣发/MX-008.mp4"
     ]
   },
@@ -304,13 +304,13 @@ const portfolioProjects = [
       body: "Static layouts and motion visuals work together to create a branded ecommerce atmosphere across screens, campaign pages, and brand exposure moments."
     },
     media: [
-      "我的作品/09_抖音电商/DS-005.webp",
+      "我的作品/09_抖音电商/DS-005.gif",
       "我的作品/09_抖音电商/DS-001.jpg",
       "我的作品/09_抖音电商/DS-002.jpg",
       "我的作品/09_抖音电商/DS-003.jpg",
       "我的作品/09_抖音电商/DS-006.jpg",
-      "我的作品/09_抖音电商/DS-007-1.webp",
-      "我的作品/09_抖音电商/DS-007-2.webp",
+      "我的作品/09_抖音电商/DS-007-1.gif",
+      "我的作品/09_抖音电商/DS-007-2.gif",
       "我的作品/09_抖音电商/DS-008.jpg"
     ]
   },

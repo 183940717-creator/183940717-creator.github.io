@@ -8,12 +8,12 @@
       content="LX Studio designer portfolio: brand identity, digital products, editorial systems, and spatial narratives."
     />
     <title>LX Studio | Designer Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=20260609-video-dark" />
+    <link rel="stylesheet" href="styles.css?v=20260611-cms" />
   </head>
   <body>
     <header class="site-header" aria-label="Site navigation">
       <a class="brand-mark" href="#top" aria-label="Hakuna home">
-        <img src="首页素材/site-logo.svg" alt="" />
+        <img src="首页素材/site-logo.svg?v=20260611-cms" alt="" />
         <span data-zh="首页" data-en="Home">首页</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -28,12 +28,25 @@
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
-        <video class="hero-mobile-video" autoplay muted loop playsinline preload="metadata" poster="首页素材/home-background.jpg" aria-hidden="true">
-          <source src="首页手机视频/mobile-hero-video.mp4" type="video/mp4" />
+        <video
+          class="hero-mobile-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          x5-playsinline
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="false"
+          preload="auto"
+          poster="首页素材/home-background.jpg?v=20260610-wechat-video"
+          aria-hidden="true"
+        >
+          <source src="首页手机视频/mobile-hero-video.mp4?v=20260610-wechat-video" type="video/mp4" />
         </video>
         <div class="hero-copy">
           <h1 id="hero-title" class="hero-title">
-            <img src="首页素材/lx-studio-wordmark.svg" alt="LX Studio" />
+            <img src="首页素材/lx-studio-wordmark.svg?v=20260611-cms" alt="LX Studio" />
           </h1>
           <p class="hero-lede">
             <span>这里是Hakuna的个人设计作品集，展示视觉设计、动效设计及其他多元媒介设计作品，</span>
@@ -97,23 +110,12 @@
         >
           接受精选项目、合作与视觉系统相关委托。
         </h2>
-        <div class="contact-links">
-          <a
-            class="copy-email-link"
-            href="#"
-            data-copy-email="183940717@qq.com"
-            data-copy-success-zh="复制成功"
-            data-copy-success-en="Copied"
-          >
-            183940717@qq.com
-          </a>
-          <span>Phone：17521234601</span>
-          <a href="about.html#resume-bottom">WeChat</a>
-        </div>
+        <div class="contact-links"></div>
       </section>
     </main>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script src="data.js?v=20260611-cms"></script>
+    <script src="首页文案.js?v=20260611-cms"></script>
+    <script src="script.js?v=20260611-cms"></script>
   </body>
 </html>

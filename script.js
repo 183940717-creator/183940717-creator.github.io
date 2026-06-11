@@ -1,9 +1,200 @@
-const projects = window.portfolioProjects || (typeof portfolioProjects === "undefined" ? [] : portfolioProjects);
-const orderedProjects = [...projects].sort((a, b) => Number(a.number) - Number(b.number));
-const featuredProjectIds = window.homepageFeaturedProjectIds || [];
-const featuredProjects = featuredProjectIds
-  .map((id) => projects.find((project) => project.id === id))
-  .filter(Boolean);
+let projects = window.portfolioProjects || (typeof portfolioProjects === "undefined" ? [] : portfolioProjects);
+let orderedProjects = [];
+let featuredProjectIds = window.homepageFeaturedProjectIds || [];
+let featuredProjects = [];
+const homepageContent = window.homepageContent || null;
+const assetCacheKey = "20260610-wechat-video";
+const contactIconCacheKey = Date.now().toString(36);
+
+const refreshProjectState = () => {
+  orderedProjects = [...projects].sort((a, b) => Number(a.number) - Number(b.number));
+  featuredProjects = featuredProjectIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean);
+};
+
+const normalizeListValue = (item) => {
+  if (typeof item === "string") {
+    return item;
+  }
+
+  if (!item || typeof item !== "object") {
+    return "";
+  }
+
+  return item.item || item.path || item.value || item.id || item.group || "";
+};
+
+const normalizeProject = (project) => ({
+  ...project,
+  number: String(project.number || ""),
+  media: Array.isArray(project.media) ? project.media.map(normalizeListValue).filter(Boolean) : [],
+  fadeGroups: Array.isArray(project.fadeGroups) ? project.fadeGroups.map(normalizeListValue).filter(Boolean) : []
+});
+
+const loadPortfolioContent = async () => {
+  refreshProjectState();
+
+  try {
+    const response = await fetch(versionedAsset("content/projects.json"), { cache: "no-store" });
+    if (!response.ok) {
+      return;
+    }
+
+    const content = await response.json();
+    if (!Array.isArray(content.projects)) {
+      return;
+    }
+
+    projects = content.projects.map(normalizeProject);
+    featuredProjectIds = Array.isArray(content.featuredProjectIds)
+      ? content.featuredProjectIds.map(normalizeListValue).filter(Boolean)
+      : featuredProjectIds;
+    window.portfolioProjects = projects;
+    window.homepageFeaturedProjectIds = featuredProjectIds;
+    refreshProjectState();
+  } catch (error) {
+    refreshProjectState();
+  }
+};
+
+const escapeHTML = (value = "") =>
+  String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+
+const setLocalizedText = (element, value) => {
+  if (!element || !value) {
+    return;
+  }
+
+  element.dataset.zh = value.zh || "";
+  element.dataset.en = value.en || value.zh || "";
+  element.textContent = value.zh || "";
+};
+
+const versionedAsset = (src) => {
+  if (!src || src.startsWith("data:") || src.startsWith("blob:")) {
+    return src;
+  }
+
+  return `${src}${src.includes("?") ? "&" : "?"}v=${assetCacheKey}`;
+};
+
+const contactIcon = (type) => {
+  const customIcon = `<img src="首页联系图标/${type}.svg?v=${contactIconCacheKey}" alt="" loading="lazy" onerror="this.remove()" />`;
+  const icons = {
+    email: `
+      ${customIcon}
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3.5" y="5.5" width="17" height="13" rx="4"></rect>
+        <path d="M5.5 8l6.5 5 6.5-5"></path>
+      </svg>
+    `,
+    phone: `
+      ${customIcon}
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8.2 4.8l2 4.2-2.1 1.5c1.1 2.2 2.8 3.9 5.1 5l1.5-2.1 4.4 1.9c.6.3.9.9.7 1.5-.4 1.6-1.9 2.7-3.6 2.7-6.2-.2-11.2-5.2-11.5-11.4C4.6 6.4 5.7 5 7.3 4.6c.4-.1.7 0 .9.2z"></path>
+      </svg>
+    `,
+    wechat: `
+      ${customIcon}
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10.3 17.5c-3.5 0-6.3-2.2-6.3-5s2.8-5 6.3-5 6.3 2.2 6.3 5-2.8 5-6.3 5z"></path>
+        <path d="M14.2 11.3c3.2.2 5.8 2.2 5.8 4.7 0 2.6-2.7 4.7-6 4.7-1 0-2-.2-2.8-.6l-2.3.9.7-1.8"></path>
+        <path d="M8.2 11h.1M12.1 11h.1M13.5 15.4h.1M16.9 15.4h.1"></path>
+      </svg>
+    `
+  };
+
+  return icons[type] || "";
+};
+
+const contactItem = ({ type, label, value, href, copy }) => {
+  const tag = href || copy ? "a" : "span";
+  const hrefAttr = href ? ` href="${escapeHTML(href)}"` : copy ? ` href="#"` : "";
+  const copyAttrs = copy
+    ? ` data-copy-email="${escapeHTML(value)}" data-copy-success-zh="${escapeHTML(copy.zh)}" data-copy-success-en="${escapeHTML(copy.en)}"`
+    : "";
+  const copyClass = copy ? " copy-email-link" : "";
+
+  return `
+    <${tag} class="contact-item${copyClass}"${hrefAttr}${copyAttrs}>
+      <span class="contact-icon contact-icon-${type}" aria-hidden="true">${contactIcon(type)}</span>
+      <span class="contact-text">
+        <span class="contact-label" data-zh="${escapeHTML(label.zh)}" data-en="${escapeHTML(label.en)}">${escapeHTML(label.zh)}</span>
+        <span class="contact-value">${escapeHTML(value)}</span>
+      </span>
+    </${tag}>
+  `;
+};
+
+const renderTagRows = (rows = []) =>
+  rows
+    .map((row) => {
+      const items = row.items.map((item) => `<b>${escapeHTML(item)}</b>`).join("");
+      const className = ["tag-row", row.className || ""].filter(Boolean).join(" ");
+      return `
+        <div class="${className}">
+          <span>${items}</span>
+          <span aria-hidden="true">${items}</span>
+        </div>
+      `;
+    })
+    .join("");
+
+const applyHomepageContent = () => {
+  if (!homepageContent || !document.querySelector("#top")) {
+    return;
+  }
+
+  if (homepageContent.pageTitle) {
+    document.title = homepageContent.pageTitle;
+  }
+
+  if (homepageContent.description) {
+    document.querySelector('meta[name="description"]')?.setAttribute("content", homepageContent.description);
+  }
+
+  setLocalizedText(document.querySelector(".brand-mark span"), homepageContent.navigation?.home);
+  setLocalizedText(document.querySelector('.nav-links a[href="works.html"]'), homepageContent.navigation?.works);
+  setLocalizedText(document.querySelector('.nav-links a[href="about.html"]'), homepageContent.navigation?.resume);
+
+  const wordmark = document.querySelector(".hero-title img");
+  if (wordmark && homepageContent.hero?.wordmarkAlt) {
+    wordmark.alt = homepageContent.hero.wordmarkAlt;
+  }
+
+  const heroLede = document.querySelector(".hero-lede");
+  if (heroLede && homepageContent.hero?.descriptionLines) {
+    heroLede.innerHTML = homepageContent.hero.descriptionLines
+      .map((line) => `<span>${escapeHTML(line)}</span>`)
+      .join("");
+  }
+
+  setLocalizedText(document.querySelector(".section-toolbar h2"), homepageContent.featuredWorks?.title);
+  setLocalizedText(document.querySelector(".view-all-link"), homepageContent.featuredWorks?.allWorks);
+
+  const tagLink = document.querySelector(".tag-stream-link");
+  if (tagLink && homepageContent.tags) {
+    tagLink.innerHTML = renderTagRows(homepageContent.tags);
+  }
+
+  setLocalizedText(document.querySelector(".contact .kicker"), homepageContent.contact?.kicker);
+  setLocalizedText(document.querySelector("#contact-title"), homepageContent.contact?.title);
+
+  const contactLinks = document.querySelector(".contact-links");
+  if (contactLinks && homepageContent.contact) {
+    const { email, phone, wechat } = homepageContent.contact;
+    contactLinks.innerHTML = [
+      contactItem({ type: "email", label: email.label, value: email.value, copy: email.copySuccess }),
+      contactItem({ type: "phone", label: phone.label, value: phone.value }),
+      contactItem({ type: "wechat", label: wechat.label, value: wechat.value, href: wechat.href })
+    ].join("");
+  }
+};
 
 const getPreferredLanguage = () => {
   const stored = localStorage.getItem("portfolio-language");
@@ -34,20 +225,20 @@ const mediaType = (src) => {
 
 const mediaElement = (src, alt = "") => {
   if (mediaType(src) === "video") {
-    return `<video src="${src}" controls playsinline preload="metadata" aria-label="${alt}"></video>`;
+    return `<video src="${versionedAsset(src)}" controls playsinline preload="metadata" aria-label="${alt}"></video>`;
   }
 
-  return `<img src="${src}" alt="${alt}" loading="lazy" />`;
+  return `<img src="${versionedAsset(src)}" alt="${alt}" loading="lazy" />`;
 };
 
-const homepageCoverPath = (project, extension = "jpg") => `首页作品封面/${project.id}.${extension}`;
+const homepageCoverPath = (project, extension = "jpg") => versionedAsset(`首页作品封面/${project.id}.${extension}`);
 
 const homepageCoverElement = (project) => `
   <img
     src="${homepageCoverPath(project, "jpg")}"
     data-cover-step="jpg"
     data-cover-base="首页作品封面/${project.id}"
-    data-cover-fallback="${project.cover}"
+    data-cover-fallback="${versionedAsset(project.cover)}"
     alt="${project.title} project preview"
     loading="lazy"
   />
@@ -236,7 +427,6 @@ const renderProjectPage = () => {
 
       return `
         <section class="${rowClasses}" style="--media-count: ${group.items.length}" aria-label="${project.title} ${group.label}">
-          <span class="project-media-number">${group.label}</span>
           <div class="project-media-items">
             ${group.items.map((item) => mediaElement(item.src, `${project.title} ${group.label}`)).join("")}
           </div>
@@ -344,6 +534,41 @@ const setupHeroInteractions = () => {
   }
 };
 
+const setupMobileHeroVideo = () => {
+  const video = document.querySelector(".hero-mobile-video");
+  if (!video) {
+    return;
+  }
+
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+  video.setAttribute("x5-playsinline", "");
+  video.setAttribute("x5-video-player-type", "h5");
+  video.setAttribute("x5-video-player-fullscreen", "false");
+
+  const playVideo = () => {
+    if (window.matchMedia("(min-width: 769px)").matches) {
+      return;
+    }
+
+    const playPromise = video.play();
+    if (playPromise?.catch) {
+      playPromise.catch(() => {});
+    }
+  };
+
+  video.addEventListener("loadeddata", playVideo, { once: true });
+  window.addEventListener("pageshow", playVideo);
+  document.addEventListener("WeixinJSBridgeReady", playVideo, false);
+  document.addEventListener("touchstart", playVideo, { once: true, passive: true });
+
+  playVideo();
+};
+
 const setupCoverFallbacks = () => {
   document.querySelectorAll("[data-cover-base]").forEach((image) => {
     image.addEventListener("error", () => {
@@ -352,13 +577,13 @@ const setupCoverFallbacks = () => {
 
       if (step === "jpg") {
         image.dataset.coverStep = "png";
-        image.src = `${base}.png`;
+        image.src = versionedAsset(`${base}.png`);
         return;
       }
 
       if (step === "png") {
         image.dataset.coverStep = "gif";
-        image.src = `${base}.gif`;
+        image.src = versionedAsset(`${base}.gif`);
         return;
       }
 
@@ -370,13 +595,20 @@ const setupCoverFallbacks = () => {
   });
 };
 
-renderProjectGrid();
-renderAllProjectGrid();
-renderProjectIndex();
-renderProjectPage();
-setupFilters();
-setupLanguageToggle();
-setupCopyEmail();
-setupHeroInteractions();
-setupCoverFallbacks();
-setLanguage(getPreferredLanguage());
+const initPortfolio = async () => {
+  await loadPortfolioContent();
+  applyHomepageContent();
+  renderProjectGrid();
+  renderAllProjectGrid();
+  renderProjectIndex();
+  renderProjectPage();
+  setupFilters();
+  setupLanguageToggle();
+  setupCopyEmail();
+  setupHeroInteractions();
+  setupMobileHeroVideo();
+  setupCoverFallbacks();
+  setLanguage(getPreferredLanguage());
+};
+
+initPortfolio();

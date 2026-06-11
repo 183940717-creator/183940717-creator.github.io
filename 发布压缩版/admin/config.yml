@@ -1,0 +1,105 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "发布压缩版/我的作品/_cms_uploads"
+public_folder: "/我的作品/_cms_uploads"
+
+site_url: "https://hakunaworks.netlify.app"
+display_url: "https://hakunaworks.netlify.app"
+logo_url: "/首页素材/site-logo.svg"
+
+collections:
+  - name: "portfolio"
+    label: "作品集内容"
+    files:
+      - name: "projects"
+        label: "作品列表与首页精选"
+        file: "发布压缩版/content/projects.json"
+        format: "json"
+        fields:
+          - label: "首页精选作品 ID"
+            name: "featuredProjectIds"
+            widget: "list"
+            hint: "这里控制首页精选作品和顺序。填写作品 ID，例如 pheagee。"
+            field:
+              label: "作品 ID"
+              name: "id"
+              widget: "string"
+
+          - label: "全部作品"
+            name: "projects"
+            widget: "list"
+            summary: "{{fields.number}} · {{fields.title}}"
+            collapsed: true
+            fields:
+              - label: "作品 ID"
+                name: "id"
+                widget: "string"
+                hint: "英文小写、数字和短横线，例如 new-project。作品详情链接会使用这个 ID。"
+              - label: "排序编号"
+                name: "number"
+                widget: "string"
+                hint: "用于全部作品排序，例如 01、02、12。"
+              - label: "作品名称"
+                name: "title"
+                widget: "string"
+              - label: "年份"
+                name: "year"
+                widget: "string"
+                default: "2024"
+              - label: "分类"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "品牌", value: "brand" }
+                  - { label: "活动视觉", value: "campaign" }
+                  - { label: "UI 交互", value: "ui" }
+                  - { label: "数字内容", value: "digital" }
+              - label: "默认封面"
+                name: "cover"
+                widget: "file"
+                hint: "这是封面兜底图。首页/全部作品优先读取“首页作品封面/作品ID.jpg/png/gif”。"
+
+              - label: "中文信息"
+                name: "zh"
+                widget: "object"
+                fields:
+                  - { label: "项目类型", name: "meta", widget: "string" }
+                  - { label: "一句话介绍", name: "summary", widget: "text" }
+                  - { label: "范围", name: "scope", widget: "string" }
+                  - { label: "角色", name: "role", widget: "string" }
+                  - { label: "大标题", name: "headline", widget: "string", required: false }
+                  - { label: "正文", name: "body", widget: "text", required: false }
+
+              - label: "英文信息"
+                name: "en"
+                widget: "object"
+                fields:
+                  - { label: "Project Type", name: "meta", widget: "string" }
+                  - { label: "Summary", name: "summary", widget: "text" }
+                  - { label: "Scope", name: "scope", widget: "string" }
+                  - { label: "Role", name: "role", widget: "string" }
+                  - { label: "Headline", name: "headline", widget: "string", required: false }
+                  - { label: "Body", name: "body", widget: "text", required: false }
+
+              - label: "作品详情图片 / GIF / 视频"
+                name: "media"
+                widget: "list"
+                hint: "会按照文件名里的编号自动排列；001-1、001-2、001-3 会并排。支持 JPG、PNG、GIF、WEBP、MP4。"
+                field:
+                  label: "媒体文件"
+                  name: "item"
+                  widget: "file"
+
+              - label: "渐隐轮播编号"
+                name: "fadeGroups"
+                widget: "list"
+                required: false
+                hint: "例如填 001，可让 001-1、001-2、001-3 在同一位置渐隐轮播。"
+                field:
+                  label: "编号"
+                  name: "group"
+                  widget: "string"
