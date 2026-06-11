@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Hakuna 账号设置</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #070707;
+        color: #f7f4ea;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+
+      main {
+        width: min(420px, calc(100% - 48px));
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      p {
+        margin: 0;
+        color: rgba(247, 244, 234, 0.68);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 18px;
+        color: #f7f4ea;
+        font-weight: 700;
+        text-underline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Hakuna 账号设置</h1>
+      <p id="identity-message">正在打开设置密码窗口...</p>
+      <a href="/admin/">返回后台</a>
+    </main>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      (() => {
+        const message = document.querySelector("#identity-message");
+        const identity = window.netlifyIdentity;
+
+        if (!identity) {
+          message.textContent = "登录组件加载失败，请刷新页面重试。";
+          return;
+        }
+
+        const goToAdmin = () => {
+          window.location.href = "/admin/";
+        };
+
+        let opened = false;
+        const openIdentity = () => {
+          if (opened) return;
+          opened = true;
+          identity.open();
+        };
+
+        identity.on("init", openIdentity);
+        identity.on("login", goToAdmin);
+        identity.on("close", () => {
+          if (identity.currentUser && identity.currentUser()) {
+            goToAdmin();
+          }
+        });
+
+        identity.init();
+        window.setTimeout(openIdentity, 300);
+      })();
+    </script>
+  </body>
+</html>

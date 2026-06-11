@@ -12,6 +12,11 @@
   const hasIdentityToken = tokenNames.some((name) => hash.includes(`${name}=`) || search.includes(`${name}=`));
 
   if (!hasIdentityToken) return;
+  if (!window.location.pathname.endsWith("/identity.html")) {
+    const tokenPayload = hash || search;
+    window.location.replace(`/identity.html#${tokenPayload}`);
+    return;
+  }
 
   const loadIdentityWidget = () =>
     new Promise((resolve, reject) => {
