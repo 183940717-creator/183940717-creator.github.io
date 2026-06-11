@@ -1,0 +1,29 @@
+{
+  "id": "new-project-id",
+  "number": "12",
+  "title": "新作品名称",
+  "year": "2026",
+  "category": "brand",
+  "cover": "我的作品/12_新作品/new-001.jpg",
+  "zh": {
+    "meta": "品牌 / 项目类型",
+    "summary": "这里写一句中文简介。",
+    "scope": "视觉系统、主视觉、动态延展",
+    "role": "视觉设计、动效设计",
+    "headline": "这里写作品详情页的一句主标题。",
+    "body": "这里写项目说明，可以稍微详细一点。"
+  },
+  "en": {
+    "meta": "Brand / Project type",
+    "summary": "One short English summary.",
+    "scope": "Visual system, key visual, motion extensions",
+    "role": "Visual design, motion design",
+    "headline": "One headline for the project page.",
+    "body": "A slightly longer English project description."
+  },
+  "media": [
+    "我的作品/12_新作品/new-001.jpg",
+    "我的作品/12_新作品/new-002.jpg",
+    "我的作品/12_新作品/new-003.jpg"
+  ]
+}

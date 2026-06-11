@@ -1,6 +1,6 @@
 [build]
   publish = "发布压缩版"
-  command = ""
+  command = "node tools/prepare-publish.js"
 
 [[headers]]
   for = "/*"
