@@ -35,6 +35,15 @@
       .cms-loading.is-error span {
         color: #ffb8a8;
       }
+
+      .cms-loading a {
+        display: inline-block;
+        margin-top: 16px;
+        color: #f7f4ea;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
     </style>
   </head>
   <body>
@@ -47,12 +56,28 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       (() => {
+        const liveAdminUrl = "https://hakunaworks.netlify.app/admin/";
         const loading = document.querySelector("#cms-loading");
-        const setLoadingMessage = (message, isError = false) => {
+        const setLoadingMessage = (message, isError = false, link = "") => {
           if (!loading) return;
           loading.classList.toggle("is-error", isError);
           loading.querySelector("span").textContent = message;
+          const existingLink = loading.querySelector("a");
+          if (existingLink) {
+            existingLink.remove();
+          }
+          if (link) {
+            const anchor = document.createElement("a");
+            anchor.href = link;
+            anchor.textContent = "打开线上后台";
+            loading.querySelector("p").appendChild(anchor);
+          }
         };
+
+        if (window.location.protocol === "file:") {
+          setLoadingMessage("CMS 后台不能通过本地文件直接打开，请使用线上后台。", true, liveAdminUrl);
+          return;
+        }
 
         const identity = window.netlifyIdentity;
         if (!identity) {
