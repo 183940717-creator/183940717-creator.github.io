@@ -8,6 +8,33 @@
   </head>
   <body>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      (() => {
+        const identity = window.netlifyIdentity;
+        if (!identity) return;
+
+        const tokenNames = [
+          "invite_token",
+          "recovery_token",
+          "confirmation_token",
+          "email_change_token",
+          "access_token"
+        ];
+        const hash = window.location.hash.replace(/^#\/?/, "");
+        const search = window.location.search.replace(/^\?/, "");
+        const hasIdentityToken = tokenNames.some((name) => hash.includes(`${name}=`) || search.includes(`${name}=`));
+
+        identity.on("init", () => {
+          if (hasIdentityToken) {
+            identity.open();
+          }
+        });
+
+        identity.on("login", () => {
+          window.location.href = "/admin/";
+        });
+      })();
+    </script>
     <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
   </body>
 </html>
