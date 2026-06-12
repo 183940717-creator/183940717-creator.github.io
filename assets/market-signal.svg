@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Market Signal</title>
+  <desc id="desc">Editorial data artwork with chart bars, columns, and large typographic blocks.</desc>
+  <rect width="1200" height="900" fill="#f2efe6"/>
+  <rect x="86" y="76" width="1028" height="748" fill="#f9f7ef" stroke="#171717" stroke-width="6"/>
+  <path d="M148 150h460v52H148zm0 88h310v34H148zm0 64h230v34H148z" fill="#171717"/>
+  <rect x="148" y="445" width="110" height="260" fill="#2558a7"/>
+  <rect x="296" y="355" width="110" height="350" fill="#2b6f64"/>
+  <rect x="444" y="500" width="110" height="205" fill="#e0b33f"/>
+  <rect x="592" y="270" width="110" height="435" fill="#b34d35"/>
+  <rect x="740" y="398" width="110" height="307" fill="#171717"/>
+  <rect x="888" y="206" width="110" height="499" fill="#2558a7"/>
+  <path d="M148 746h850" stroke="#171717" stroke-width="6"/>
+  <path d="M748 150h260v26H748zm0 62h180v26H748zm0 62h240v26H748z" fill="#171717"/>
+</svg>

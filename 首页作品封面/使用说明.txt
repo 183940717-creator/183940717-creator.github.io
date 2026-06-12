@@ -1,0 +1,22 @@
+这个文件夹专门放首页作品卡片封面。
+
+每个项目使用固定文件名，支持 jpg / png / gif。
+替换时保持“文件名前缀”不变，只改图片内容或扩展名即可。
+
+文件名列表：
+
+pheagee.jpg / pheagee.png / pheagee.gif
+tiktok-developer-day.jpg / tiktok-developer-day.png / tiktok-developer-day.gif
+douyin-annual-report.jpg / douyin-annual-report.png / douyin-annual-report.gif
+douyin-social.jpg / douyin-social.png / douyin-social.gif
+douyin-life-talk.jpg / douyin-life-talk.png / douyin-life-talk.gif
+douyin-new-year.jpg / douyin-new-year.png / douyin-new-year.gif
+tiktok-streak.jpg / tiktok-streak.png / tiktok-streak.gif
+douyin-ip-campaign.jpg / douyin-ip-campaign.png / douyin-ip-campaign.gif
+douyin-ecommerce.jpg / douyin-ecommerce.png / douyin-ecommerce.gif
+past-work.jpg / past-work.png / past-work.gif
+aigc.jpg / aigc.png / aigc.gif
+
+注意：
+- 同一个项目最好只保留一种格式，避免浏览器优先读取旧文件。
+- 读取优先级是 jpg -> png -> gif。
