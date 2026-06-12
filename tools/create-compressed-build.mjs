@@ -44,6 +44,8 @@ function copySite() {
     "--exclude",
     ".gitignore",
     "--exclude",
+    ".netlify",
+    "--exclude",
     "node_modules",
     "--exclude",
     "tools",
