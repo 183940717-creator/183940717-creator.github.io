@@ -6,9 +6,10 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publishDir = path.join(root, "发布压缩版");
 const ffmpeg = process.env.FFMPEG_PATH;
+const avconvert = "/usr/bin/avconvert";
 
-if (!ffmpeg || !fs.existsSync(ffmpeg)) {
-  console.error("FFMPEG_PATH is missing or invalid.");
+if ((!ffmpeg || !fs.existsSync(ffmpeg)) && !fs.existsSync(avconvert)) {
+  console.error("No video compression tool is available.");
   process.exit(1);
 }
 
@@ -39,11 +40,23 @@ function copySite() {
     "--exclude",
     ".git",
     "--exclude",
+    ".github",
+    "--exclude",
+    ".gitignore",
+    "--exclude",
     "node_modules",
     "--exclude",
     "tools",
     "--exclude",
     "发布压缩版",
+    "--exclude",
+    "README.md",
+    "--exclude",
+    "GitHub添加作品说明.md",
+    "--exclude",
+    "后台使用说明.md",
+    "--exclude",
+    "作品添加模板.json",
     `${root}/`,
     `${publishDir}/`,
   ];
@@ -89,23 +102,40 @@ function convertGif(file) {
 
 function compressMp4(file) {
   const output = file.replace(/\.mp4$/i, ".compressed.mp4");
-  const ok = run(ffmpeg, [
-    "-y",
-    "-i",
-    file,
-    "-vf",
-    "scale='min(1600,iw)':-2:flags=lanczos",
-    "-c:v",
-    "libx264",
-    "-crf",
-    "30",
-    "-preset",
-    "veryfast",
-    "-movflags",
-    "+faststart",
-    "-an",
-    output,
-  ]);
+  let ok = false;
+
+  if (ffmpeg && fs.existsSync(ffmpeg)) {
+    ok = run(ffmpeg, [
+      "-y",
+      "-i",
+      file,
+      "-vf",
+      "scale='min(1600,iw)':-2:flags=lanczos",
+      "-c:v",
+      "libx264",
+      "-crf",
+      "30",
+      "-preset",
+      "veryfast",
+      "-movflags",
+      "+faststart",
+      "-an",
+      output,
+    ]);
+  }
+
+  if (!ok && fs.existsSync(avconvert)) {
+    ok = run(avconvert, [
+      "--source",
+      file,
+      "--preset",
+      "PresetMediumQuality",
+      "--output",
+      output,
+      "--replace",
+    ]);
+  }
+
   if (!ok || !fs.existsSync(output)) return false;
   if (bytes(output) >= bytes(file)) {
     fs.rmSync(output, { force: true });

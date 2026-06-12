@@ -3,7 +3,7 @@ let orderedProjects = [];
 let featuredProjectIds = window.homepageFeaturedProjectIds || [];
 let featuredProjects = [];
 const homepageContent = window.homepageContent || null;
-const assetCacheKey = "20260610-wechat-video";
+const assetCacheKey = "20260612-refresh";
 const contactIconCacheKey = Date.now().toString(36);
 
 const refreshProjectState = () => {
@@ -555,6 +555,10 @@ const setupMobileHeroVideo = () => {
       return;
     }
 
+    if (video.paused && video.readyState < 2) {
+      video.load();
+    }
+
     const playPromise = video.play();
     if (playPromise?.catch) {
       playPromise.catch(() => {});
@@ -565,6 +569,11 @@ const setupMobileHeroVideo = () => {
   window.addEventListener("pageshow", playVideo);
   document.addEventListener("WeixinJSBridgeReady", playVideo, false);
   document.addEventListener("touchstart", playVideo, { once: true, passive: true });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      playVideo();
+    }
+  });
 
   playVideo();
 };

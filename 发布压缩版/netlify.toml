@@ -1,3 +1,11 @@
 [build]
-  publish = "."
-  command = ""
+  publish = "发布压缩版"
+  command = "node tools/prepare-publish.js"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+    Netlify-CDN-Cache-Control = "no-cache"
