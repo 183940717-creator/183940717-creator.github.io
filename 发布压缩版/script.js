@@ -3,7 +3,7 @@ let orderedProjects = [];
 let featuredProjectIds = window.homepageFeaturedProjectIds || [];
 let featuredProjects = [];
 const homepageContent = window.homepageContent || null;
-const assetCacheKey = "20260612-refresh";
+const assetCacheKey = "20260612-webp2";
 const contactIconCacheKey = Date.now().toString(36);
 
 const refreshProjectState = () => {
@@ -228,7 +228,7 @@ const mediaElement = (src, alt = "") => {
     return `<video src="${versionedAsset(src)}" controls playsinline preload="metadata" aria-label="${alt}"></video>`;
   }
 
-  return `<img src="${versionedAsset(src)}" alt="${alt}" loading="lazy" />`;
+  return `<img src="${versionedAsset(src)}" alt="${alt}" loading="lazy" decoding="async" />`;
 };
 
 const homepageCoverPath = (project, extension = "jpg") => versionedAsset(`首页作品封面/${project.id}.${extension}`);
@@ -241,6 +241,7 @@ const homepageCoverElement = (project) => `
     data-cover-fallback="${versionedAsset(project.cover)}"
     alt="${project.title} project preview"
     loading="lazy"
+    decoding="async"
   />
 `;
 
@@ -585,6 +586,12 @@ const setupCoverFallbacks = () => {
       const base = image.dataset.coverBase;
 
       if (step === "jpg") {
+        image.dataset.coverStep = "webp";
+        image.src = versionedAsset(`${base}.webp`);
+        return;
+      }
+
+      if (step === "webp") {
         image.dataset.coverStep = "png";
         image.src = versionedAsset(`${base}.png`);
         return;
